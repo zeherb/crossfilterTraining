@@ -82,10 +82,13 @@
   pointer-events: none;
 }
 // table
-table {
-  width: 100%;
-}
-th {
-  font-weight: bold;
-  font-size: 15px;
+.mat-elevation-z8 {
+  margin-top: 20px;
+  table {
+    width: 100%;
+    th {
+      font-weight: bold;
+      font-size: 15px;
+    }
+  }
 }

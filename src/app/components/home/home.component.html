@@ -22,25 +22,25 @@
     </div>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource">
-        <!-- Position Column -->
+        <!-- Timestamp Column -->
         <ng-container matColumnDef="Timestamp">
           <th mat-header-cell *matHeaderCellDef>Timestamp</th>
           <td mat-cell *matCellDef="let element">{{ element.Timestamp }}</td>
         </ng-container>
 
-        <!-- Name Column -->
+        <!-- car-id Column -->
         <ng-container matColumnDef="car-id">
           <th mat-header-cell *matHeaderCellDef>car-id</th>
           <td mat-cell *matCellDef="let element">{{ element['car-id'] }}</td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!-- car-type Column -->
         <ng-container matColumnDef="car-type">
           <th mat-header-cell *matHeaderCellDef>car-type</th>
           <td mat-cell *matCellDef="let element">{{ element['car-type'] }}</td>
         </ng-container>
 
-        <!-- Symbol Column -->
+        <!-- gate-name Column -->
         <ng-container matColumnDef="gate-name">
           <th mat-header-cell *matHeaderCellDef>gate-name</th>
           <td mat-cell *matCellDef="let element">{{ element['gate-name'] }}</td>
@@ -52,6 +52,7 @@
 
       <mat-paginator
         [pageSizeOptions]="[5, 10, 20]"
+        [pageSize]="10"
         showFirstLastButtons
         aria-label="Select page of periodic elements"
       ></mat-paginator>

@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import crossfilter from 'crossfilter2'
-// import * as crossfilter from 'crossfilter2/crossfilter'
 import * as d3 from 'd3'
-import { DSVRowString } from 'd3'
 import * as dc from 'dc'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
