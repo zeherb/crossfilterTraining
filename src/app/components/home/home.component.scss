@@ -1,0 +1,91 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  .charts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .chart {
+      width: 40%;
+      height: 250px;
+    }
+  }
+  .tableDiv {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    .tableHead {
+      font-size: 20px;
+      .count {
+        font-weight: bold;
+        color: #3182bd;
+      }
+      #resetBtn {
+        font-size: 20px;
+        font-weight: bold;
+        color: green;
+        border: 2px solid green;
+        border-radius: 5px;
+        background-color: transparent;
+        cursor: pointer;
+        &:hover {
+          transition: 0.5s;
+          filter: drop-shadow(0px 0px 1px green);
+        }
+      }
+    }
+  }
+}
+// dc css
+
+::ng-deep .dc-chart rect.deselected {
+  stroke: none;
+  fill: #ccc;
+}
+
+::ng-deep .dc-chart .axis path,
+::ng-deep .dc-chart .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+::ng-deep .dc-chart .grid-line,
+::ng-deep .dc-chart .axis .grid-line,
+::ng-deep .dc-chart .grid-line line,
+::ng-deep .dc-chart .axis .grid-line line {
+  fill: none;
+  stroke: #ccc;
+  opacity: 0.5;
+  shape-rendering: crispEdges;
+}
+
+::ng-deep .dc-chart g.deselected text {
+  display: none;
+}
+
+::ng-deep .dc-chart g.row rect {
+  fill-opacity: 0.8;
+  cursor: pointer;
+}
+::ng-deep .dc-chart g.row rect:hover {
+  fill-opacity: 0.6;
+}
+
+::ng-deep .dc-chart g.axis text {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+// table
+table {
+  width: 100%;
+}
+th {
+  font-weight: bold;
+  font-size: 15px;
+}
