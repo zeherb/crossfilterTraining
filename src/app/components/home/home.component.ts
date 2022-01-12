@@ -20,11 +20,13 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    d3.csv('../../../assets/data/Lekagul_slice.csv').then((data: any) => {
+    d3.csv('../../../assets/data/Lekagul_slice.csv').then(async (data: any) => {
       let ndx = crossfilter(data)
-      let all = ndx.groupAll()
+      let all = ndx.groupAll<any>()
       let carTypeChart = dc.rowChart('#carType')
       let gateNameChart = dc.rowChart('#gateName')
+      let pieTypeChart = dc.pieChart('#pieTypeChart')
+      let pieGateChart = dc.pieChart('#pieGateChart')
       let visCount = dc.dataCount('.dc-data-count')
       // let visTable = dc.dataTable('.dc-data-table')
       let carTypeDim = ndx.dimension(function (d: any) {
@@ -34,6 +36,7 @@ export class HomeComponent implements OnInit {
       let gateNameDim = ndx.dimension(function (d: any) {
         return d['gate-name'] ? d['gate-name'] : 0
       })
+
       let dateDim = ndx.dimension(function (d: any) {
         return d.Timestamp ? d.Timestamp : 0
       })
@@ -46,6 +49,14 @@ export class HomeComponent implements OnInit {
         .data(function (group: any) {
           return group.top(6)
         })
+        .ordinalColors([
+          'tomato',
+          'green',
+          'yellowGreen',
+          'yellow',
+          'cyan',
+          'wheat',
+        ])
       gateNameChart
         .dimension(gateNameDim)
         .group(gateNameGroup)
@@ -53,6 +64,59 @@ export class HomeComponent implements OnInit {
         .data(function (group: any) {
           return group.top(6)
         })
+      pieTypeChart
+        .dimension(carTypeDim)
+        .group(carTypeGroup)
+        .cap(4)
+        .ordinalColors(['tomato', 'green', 'yellowGreen', 'yellow', 'cyan'])
+        .label(function (d) {
+          return (
+            d.key +
+            ' : ' +
+            ((d.value / all.reduceCount().value()) * 100).toFixed(2) +
+            '%'
+          )
+        })
+        .title(function (d) {
+          return 'Total : ' + d.value
+        })
+        .innerRadius(60)
+        .externalRadiusPadding(40)
+        .cx(150)
+        .legend(
+          dc
+            .legend()
+            .x(320)
+            .y(100)
+            .itemHeight(20)
+            .legendText(function (d: any) {
+              return d.name + ' : ' + d.data
+            })
+            .autoItemWidth(true),
+        )
+
+      pieGateChart
+        .dimension(gateNameDim)
+        .group(gateNameGroup)
+        .innerRadius(10)
+        .externalRadiusPadding(40)
+        .cx(150)
+        .cap(5)
+        .label(function (d) {
+          return ((d.value / all.reduceCount().value()) * 100).toFixed(2) + '%'
+        })
+        .legend(
+          dc
+            .legend()
+            .x(320)
+            .y(100)
+            .itemHeight(20)
+            .legendText(function (d: any) {
+              return d.name + ' : ' + d.data
+            })
+            .autoItemWidth(true),
+        )
+
       visCount.dimension(ndx).group(all)
 
       // visTable

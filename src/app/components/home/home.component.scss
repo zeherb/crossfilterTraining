@@ -5,13 +5,19 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
     .chart {
+      margin-bottom: 20px;
       width: 40%;
       height: 250px;
+    }
+    .pie {
+      height: 350px;
     }
   }
   .tableDiv {
     margin-top: 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     .tableHead {
@@ -34,10 +40,21 @@
         }
       }
     }
+    // table
+    .mat-elevation-z8 {
+      margin-top: 20px;
+      table {
+        width: 100%;
+        th {
+          font-weight: bold;
+          font-size: 15px;
+        }
+      }
+    }
   }
 }
 // dc css
-
+// row chart
 ::ng-deep .dc-chart rect.deselected {
   stroke: none;
   fill: #ccc;
@@ -81,14 +98,24 @@
   user-select: none;
   pointer-events: none;
 }
-// table
-.mat-elevation-z8 {
-  margin-top: 20px;
-  table {
-    width: 100%;
-    th {
-      font-weight: bold;
-      font-size: 15px;
-    }
-  }
+
+// pie chart
+
+::ng-deep .dc-chart .pie-slice {
+  fill: black;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+::ng-deep .dc-chart .pie-slice :hover {
+  opacity: 0.8;
+}
+::ng-deep .dc-chart .selected path {
+  stroke-width: 3;
+  stroke: #ccc;
+  fill-opacity: 1;
+}
+::ng-deep .dc-chart .deselected path {
+  fill: gray;
+  opacity: 0.5;
 }
