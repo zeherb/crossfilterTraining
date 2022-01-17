@@ -51,8 +51,8 @@ export class HomeComponent implements OnInit {
           '#f24343',
           'red',
           'cyan',
-          'yellowGreen',
-          'tomato',
+          'wheat',
+          'green',
           'gray',
         ])
       carTypeChart
@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
             .legendText(function (d: any) {
               return d.name + ' : ' + d.data
             })
-            .autoItemWidth(true),
+            .autoItemWidth(false),
         )
 
       pieGateChart
