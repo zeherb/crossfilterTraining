@@ -104,16 +104,16 @@
 ::ng-deep .dc-chart .pie-slice {
   fill: black;
   font-size: 12px;
+  fill-opacity: 0.8;
   cursor: pointer;
 }
 
 ::ng-deep .dc-chart .pie-slice :hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 ::ng-deep .dc-chart .selected path {
   stroke-width: 3;
   stroke: #ccc;
-  fill-opacity: 1;
 }
 ::ng-deep .dc-chart .deselected path {
   fill: gray;

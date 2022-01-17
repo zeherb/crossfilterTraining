@@ -42,6 +42,19 @@ export class HomeComponent implements OnInit {
       })
       let carTypeGroup = carTypeDim.group()
       let gateNameGroup = gateNameDim.group()
+      let colorGroup: any = d3
+        .scaleOrdinal()
+        .domain(['2p', '2', '1', '3', '4', '5', '6', 'Others'])
+        .range([
+          'rgb(119, 201, 53)',
+          'rgb(242, 188, 20)',
+          '#f24343',
+          'red',
+          'cyan',
+          'yellowGreen',
+          'tomato',
+          'gray',
+        ])
       carTypeChart
         .dimension(carTypeDim)
         .group(carTypeGroup)
@@ -49,14 +62,7 @@ export class HomeComponent implements OnInit {
         .data(function (group: any) {
           return group.top(6)
         })
-        .ordinalColors([
-          'tomato',
-          'green',
-          'yellowGreen',
-          'yellow',
-          'cyan',
-          'wheat',
-        ])
+        .colors(colorGroup)
       gateNameChart
         .dimension(gateNameDim)
         .group(gateNameGroup)
@@ -64,12 +70,13 @@ export class HomeComponent implements OnInit {
         .data(function (group: any) {
           return group.top(6)
         })
+
       pieTypeChart
         .dimension(carTypeDim)
         .group(carTypeGroup)
         .cap(4)
-        .ordinalColors(['tomato', 'green', 'yellowGreen', 'yellow', 'cyan'])
-        .label(function (d) {
+        .colors(colorGroup)
+        .label(function (d: any) {
           return (
             d.key +
             ' : ' +
@@ -77,7 +84,7 @@ export class HomeComponent implements OnInit {
             '%'
           )
         })
-        .title(function (d) {
+        .title(function (d: any) {
           return 'Total : ' + d.value
         })
         .innerRadius(60)
