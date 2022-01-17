@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
       let gateNameGroup = gateNameDim.group()
       let colorGroup: any = d3
         .scaleOrdinal()
-        .domain(['2p', '2', '1', '3', '4', '5', '6', 'Others'])
+        .domain(['2', '1', '2P', '3', '4', '5', '6', 'Others'])
         .range([
           'rgb(119, 201, 53)',
           'rgb(242, 188, 20)',
